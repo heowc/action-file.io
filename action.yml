@@ -1,0 +1,25 @@
+name: 'Upload to `file.io`'
+description: 'Upload to `file.io`'
+author: 'heowc'
+inputs:
+  position:
+    description: 'Base location for finding file'
+    required: false
+    default: '.'
+  file_basename:
+    description: 'File name to be created'
+    required: false
+    default: 'file'
+  file_path:
+    description: 'File(s) to upload'
+    required: true
+outputs:
+  response:
+    description: 'Response for curl'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.position }}
+    - ${{ inputs.file_basename }}
+    - ${{ inputs.file_path }}
