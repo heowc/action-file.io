@@ -4,36 +4,42 @@ on:
   pull_request:
     types: [opened, reopened]
 jobs:
-  test:
+  test-single-file:
     runs-on: ubuntu-18.04
     steps:
-        - name: Upload single file
-          run: |
-            echo 'test' >> tmp.txt
-        - uses: heowc/action-file.io@master
-          with:
-            file_path: 'tmp.txt'
-        - name: Delete compressed single file
-          run: |
+      - name: Prepare single file
+        run: |
+          echo 'test' >> tmp.txt
+      - uses: heowc/action-file.io@master
+        with:
+          file_path: 'tmp.txt'
+      - name: Delete compressed single file
+        run: |
+          rm -rf file.tar.gz
+  test-directory:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Prepare directory
+        run: |
+          mkdir tmp
+      - uses: heowc/action-file.io@master
+        with:
+          file_path: 'tmp'
+      - name: Delete compressed directory file
+        run: |
+          rm -rf file.tar.gz
+  test-regex-path:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Prepare regex path files
+        run: |
+          mkdir -p a/c
+          echo "test" >> a/c/tmp.txt
+          mkdir -p b/c
+          echo "test" >> b/c/tmp.txt
+      - uses: heowc/action-file.io@master
+        with:
+          file_path: '*/c'
+      - name: Delete compressed regex files
+        run: |
             rm -rf file.tar.gz
-        - name: Upload directory
-          run: |
-            mkdir tmp
-        - uses: heowc/action-file.io@master
-          with:
-            file_path: 'tmp'
-        - name: Delete compressed directory file
-          run: |
-            rm -rf file.tar.gz
-        - name: Upload regex path
-          run: |
-            mkdir -p a/c
-            echo "test" >> a/c/tmp.txt
-            mkdir -p b/c
-            echo "test" >> b/c/tmp.txt
-        - uses: heowc/action-file.io@master
-          with:
-            file_path: '*/c'
-        - name: Delete compressed regex files
-          run: |
-              rm -rf file.tar.gz

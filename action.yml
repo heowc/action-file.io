@@ -11,7 +11,7 @@ inputs:
     required: false
     default: 'file'
   file_path:
-    description: 'File(s) to upload'
+    description: 'Path of the file(s) to upload'
     required: true
 outputs:
   response:
