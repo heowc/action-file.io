@@ -23,3 +23,7 @@ runs:
     - ${{ inputs.position }}
     - ${{ inputs.file_basename }}
     - ${{ inputs.file_path }}
+branding:
+  icon: 'shopping-bag'
+  color: 'blue'
+  
