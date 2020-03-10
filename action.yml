@@ -1,4 +1,4 @@
-name: 'Upload to `file.io`'
+name: 'action-file.io'
 description: 'Upload to `file.io`'
 author: 'heowc'
 inputs:
