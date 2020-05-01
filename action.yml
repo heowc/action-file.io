@@ -13,6 +13,9 @@ inputs:
   file_path:
     description: 'Path of the file(s) to upload'
     required: true
+  expires:
+    description: 'How long files are not deleted. (See https://www.file.io/)'
+    required: false
 outputs:
   response:
     description: 'Response for curl'
@@ -26,4 +29,4 @@ runs:
 branding:
   icon: 'shopping-bag'
   color: 'blue'
-  
+

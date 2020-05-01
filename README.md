@@ -16,7 +16,11 @@ File name to be created. Default `"file"`.
 
 ### `file_path`
 
-**Required** Path of the file(s) to upload
+**Required** Path of the file(s) to upload.
+
+### `expires`
+
+How long files are not deleted. (See https://www.file.io/)
 
 ## Outputs
 

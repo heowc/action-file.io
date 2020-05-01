@@ -1,8 +1,9 @@
 name: Test
 on:
   push:
+    branches:
+      - master
   pull_request:
-    types: [opened, reopened]
 jobs:
   test-single-file:
     runs-on: ubuntu-18.04
@@ -43,3 +44,42 @@ jobs:
       - name: Delete compressed regex files
         run: |
             rm -rf file.tar.gz
+  test-expires-1w:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Prepare single file
+        run: |
+          echo 'test' >> tmp.txt
+      - uses: heowc/action-file.io@master
+        with:
+          file_path: 'tmp.txt'
+          expires: '1w'
+      - name: Delete compressed single file
+        run: |
+          rm -rf file.tar.gz
+  test-expires-1m:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Prepare single file
+        run: |
+          echo 'test' >> tmp.txt
+      - uses: heowc/action-file.io@master
+        with:
+          file_path: 'tmp.txt'
+          expires: '1m'
+      - name: Delete compressed single file
+        run: |
+          rm -rf file.tar.gz
+  test-expires-1y:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Prepare single file
+        run: |
+          echo 'test' >> tmp.txt
+      - uses: heowc/action-file.io@master
+        with:
+          file_path: 'tmp.txt'
+          expires: '1y'
+      - name: Delete compressed single file
+        run: |
+          rm -rf file.tar.gz
