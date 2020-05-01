@@ -15,6 +15,7 @@ function action_output() {
 POSITION="$INPUT_POSITION"
 FILE_BASENAME="$INPUT_FILE_BASENAME"
 FILE_PATH="$INPUT_FILE_PATH"
+EXPIRES="$INPUT_EXPIRES"
 
 FILE="$FILE_BASENAME.tar"
 WILDCARD="*"
@@ -41,11 +42,19 @@ else
   fi
 fi
 
-echo_and_run gzip "$FILE" 
+# Compression
+echo_and_run gzip "$FILE"
 
-echo -n "curl -F \"file=@$FILE.gz\" 'https://file.io/'"
+# Create QueryString
+QUERY_STRING='';
+if [[ -n "$EXPIRES" ]]; then
+    QUERY_STRING="?expires=$EXPIRES"
+fi
+
+# Execute the call by `file.io`
+echo -n "curl -F \"file=@$FILE.gz\" 'https://file.io/$QUERY_STRING'"
 echo
-RESPONSE=`curl -F "file=@$FILE.gz" 'https://file.io/'`
+RESPONSE=`curl -F "file=@$FILE.gz" "https://file.io/$QUERY_STRING"`
 echo "$RESPONSE"
 
 action_output 'response' "$RESPONSE"
