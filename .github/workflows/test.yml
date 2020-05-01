@@ -11,7 +11,7 @@ jobs:
       - name: Prepare single file
         run: |
           echo 'test' >> tmp.txt
-      - uses: heowc/action-file.io@master
+      - uses: heowc/action-file.io
         with:
           file_path: 'tmp.txt'
       - name: Delete compressed single file
@@ -23,7 +23,7 @@ jobs:
       - name: Prepare directory
         run: |
           mkdir tmp
-      - uses: heowc/action-file.io@master
+      - uses: heowc/action-file.io
         with:
           file_path: 'tmp'
       - name: Delete compressed directory file
@@ -38,7 +38,7 @@ jobs:
           echo "test" >> a/c/tmp.txt
           mkdir -p b/c
           echo "test" >> b/c/tmp.txt
-      - uses: heowc/action-file.io@master
+      - uses: heowc/action-file.io
         with:
           file_path: '*/c'
       - name: Delete compressed regex files
@@ -50,7 +50,7 @@ jobs:
       - name: Prepare single file
         run: |
           echo 'test' >> tmp.txt
-      - uses: heowc/action-file.io@master
+      - uses: heowc/action-file.io
         with:
           file_path: 'tmp.txt'
           expires: '1w'
@@ -63,7 +63,7 @@ jobs:
       - name: Prepare single file
         run: |
           echo 'test' >> tmp.txt
-      - uses: heowc/action-file.io@master
+      - uses: heowc/action-file.io
         with:
           file_path: 'tmp.txt'
           expires: '1m'
@@ -76,7 +76,7 @@ jobs:
       - name: Prepare single file
         run: |
           echo 'test' >> tmp.txt
-      - uses: heowc/action-file.io@master
+      - uses: heowc/action-file.io
         with:
           file_path: 'tmp.txt'
           expires: '1y'
